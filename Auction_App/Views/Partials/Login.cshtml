@@ -1,0 +1,23 @@
+@model Auctions.Models.LoginUser
+
+<h1>Login</h1>
+
+
+<form asp-controller="User" asp-action="Login" method="POST">
+    <div class="form horiz">
+        <label asp-for="LogUsername"></label>
+        <input asp-for="LogUsername">
+    </div>
+    <span class="error right" asp-validation-for="LogUsername"></span><br>
+
+    <div class="form horiz">
+        <label asp-for="LogPassword"></label>
+        <input asp-for="LogPassword">
+    </div>
+    <span class="error right" asp-validation-for="LogPassword"></span><br>
+    @if(ViewBag.InvalidLogin == true){
+        <span class="error right">Invalid Username or Password.</span><br>
+    }
+
+    <input type="submit" value="Login" class="btn btn-primary">
+</form>

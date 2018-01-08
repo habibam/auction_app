@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "All Auctions";
+}
+
+<h1>@ViewBag.CurrentAuction.Product</h1>
+<h3>Created by @ViewBag.CurrentAuction.Seller.Username</h3>
+<h3>Time Remaning: @((int)(@ViewBag.CurrentAuction.EndDate-DateTime.Now).TotalDays) days</h3> 
+<p>@ViewBag.CurrentAuction.Description</p>
+
+@if(@ViewBag.CurrentAuction.Bids.Count > 0){
+    <h4>Current Highest Bid: $@ViewBag.CurrentAuction.Bids[@ViewBag.CurrentAuction.Bids.Count-1].Amount</h4>
+    <h4>By @ViewBag.CurrentAuction.Bids[@ViewBag.CurrentAuction.Bids.Count-1].Bidder.Username</h4>
+} else {
+    <h4>Highest Bid $0.00</h4>
+}
+
+@model Auctions.Models.ViewBid
+
+<form asp-controller="Dashboard" asp-action="Bid" method="Post">
+    <h3>Place Bid?</h3>
+    <input type="hidden" asp-for="AuctionId" value="@ViewBag.CurrentAuction.AuctionId">
+    <input type="number" asp-for="Amount" min="@ViewBag.CurrentAuction.StartingBid">
+    @if(ViewBag.InvalidBid==true){<span class="error right">You're too poor for that!</span>}
+    @if(ViewBag.LowerThanHighest==true){<span class="error right">Your bid is lower than the highest bid!</span>}
+    <input type="submit" value="Bid!">
+</form>

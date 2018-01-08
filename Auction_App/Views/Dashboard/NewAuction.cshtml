@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "New Auction";
+}
+@model Auctions.Models.CreaAuction
+
+<h2>New Auction</h2>
+
+<form asp-controller="Dashboard" asp-action="CreateAuction" method="POST">
+    <div class="form horiz">
+        <label asp-for="CreProduct"></label>
+        <input asp-for="CreProduct">
+    </div>
+    <span class="error right" asp-validation-for="CreProduct"></span><br>
+
+    <div class="form horiz">
+        <label asp-for="CreDescription"></label>
+        <textarea asp-for="CreDescription"></textarea>
+    </div>
+    <span class="error right" asp-validation-for="CreDescription"></span><br>
+
+    <div class="form horiz">
+        <label asp-for="CreStartingBid"></label>
+        <input type="number" asp-for="CreStartingBid"><br>
+    </div>
+    <span class="error right" asp-validation-for="CreStartingBid"></span><br>
+
+    <div class="form horiz">
+        <label asp-for="CreEndDate"></label>
+        <input asp-for="CreEndDate"><br>
+    </div>
+    <span class="error right" asp-validation-for="CreEndDate"></span><br>
+    
+    <input type="submit" value="Create Auction" class="btn btn-primary">
+</form>

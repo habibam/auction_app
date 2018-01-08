@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "All Auctions";
+}
+@using Auctions.Models
+
+<table class = "table table-striped">
+    <thead>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Top Bid</th>
+        <th>Time Remaining</th>
+        <th> </th>
+    </thead>
+    @foreach(var a in Model)
+    {
+        <tr>
+            <td><a href="/show/@a.AuctionId">@a.Product</a></td>
+            <td>@a.Seller.Username</td>
+            @if(a.Bids.Count == 0){
+                <td>$0.00</td>
+            } else {
+                <td>$ @a.Bids[a.Bids.Count-1].Amount</td>
+            }
+            <td>@((int)(a.EndDate-DateTime.Now).TotalDays) days</td>
+            @if(@ViewBag.LoggedUserId == @a.SellerId)
+            {
+                <td><a href="/delete/@a.AuctionId">Delete</a></td>
+            } else {
+                <td> </td>
+            }
+        </tr>
+    }
+</table>
+
+<div class="form horiz">
+    <a href="/newAuction" class="btn btn-primary">New Auction</a>
+    <h4>Your Current Wallet: $@ViewBag.User.Wallet</h4>
+</div>
