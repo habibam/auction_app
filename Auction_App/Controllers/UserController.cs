@@ -27,9 +27,9 @@ namespace Auctions.Controllers
         {
 
             // Lazy login.  remove this when completed
-            // LoginUser dustin = new LoginUser();
-            // dustin.LogUsername = "amalfushi";
-            // dustin.LogPassword = "password";
+            // LoginUser habiba = new LoginUser();
+            // habiba.LogUsername = "habiba";
+            // habiba.LogPassword = "password";
 
             // return Login(dustin);
             return View();
