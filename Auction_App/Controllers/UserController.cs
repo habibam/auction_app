@@ -31,7 +31,7 @@ namespace Auctions.Controllers
             // habiba.LogUsername = "habiba";
             // habiba.LogPassword = "password";
 
-            // return Login(dustin);
+            // return Login(habiba);
             return View();
         }
 
